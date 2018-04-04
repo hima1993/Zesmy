@@ -68,18 +68,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<h1><a href="index.html"><img src="<?php echo base_url()?>template/images/logo3.jpg"></a></h1>
 		</div>
 		<div class="col-md-6 header-middle">
-			<form>
+			<form action="<?php echo base_url('index.php/User/search_keyword'); ?>" method="GET">
 				<div class="search">
-					<input type="search" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}" required="">
+					<input type="search" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}" required="" name="search">
 				</div>
 				<div class="section_room">
-					<select id="country" onchange="change_country(this.value)" class="frm-field required">
+					<select id="country" onchange="change_country(this.value)" class="frm-field required" name="categary">
 						<option value="null">All categories</option>
-						<option value="null">Electronics</option>     
-						<option value="AX">kids Wear</option>
-						<option value="AX">Men's Wear</option>
-						<option value="AX">Women's Wear</option>
-						<option value="AX">Watches</option>
+						<?php foreach ($categorylist as $item): ?>
+            				<?= "<option value= " .$item->type . ">". $item->type ."</option>" ?>
+        				<?php endforeach; ?>
+						
 					</select>
 				</div>
 				<div class="sear-sub">
@@ -166,26 +165,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									</div>
 									<div class="col-sm-3 multi-gd-img">
 										<ul class="multi-column-dropdown">
-											<li><a href="mens.html">T-shirts</a></li>
-											<li><a href="mens.html">Shirts</a></li>
-											<li><a href="mens.html">Jeans</a></li>
-											<li><a href="mens.html">Pants</a></li>
-											<li><a href="mens.html">Shorts</a></li>
+											<?php $count = 0; 
+											foreach ($categoryMen as $item){
+												$count += 1; 
+												if($count % 8 == 0){ ?>
+													</ul>
+													</div>
+													<div class="col-sm-3 multi-gd-img">
+										<ul class="multi-column-dropdown">
+												<?php }?>
+												
+												<li><a href="womens.html"><?= $item->name; ?></a></li>
+		            						
+		        							<?php }?>
 											
 										</ul>
-									</div>
-
-									<div class="col-sm-3 multi-gd-img">
-										<ul class="multi-column-dropdown">
-											<li><a href="mens.html">Jewellery</a></li>
-											<li><a href="mens.html">Sunglasses</a></li>
-											<li><a href="mens.html">Perfumes</a></li>
-											<li><a href="mens.html">Beauty</a></li>
-											<li><a href="mens.html">Shirts</a></li>
-											<li><a href="mens.html">Sunglasses</a></li>
-											<li><a href="mens.html">Swimwear</a></li>
-										</ul>
-									</div>
+									</div>									
 									<div class="clearfix"></div>
 								</div>
 							</ul>
@@ -196,20 +191,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<div class="row">
 									<div class="col-sm-3 multi-gd-img">
 										<ul class="multi-column-dropdown">
-											<li><a href="womens.html">Dresses</a></li>
-											<li><a href="womens.html">Tops</a></li>
-											<li><a href="womens.html">T-shirts & Vests</a></li>
-											<li><a href="womens.html">Jeans</a></li>
-											<li><a href="womens.html">Trousers & Leggings</a></li>
-											<li><a href="womens.html">Skirts</a></li>
-											<li><a href="womens.html">Shorts</a></li>
-										</ul>
-									</div>
-									<div class="col-sm-3 multi-gd-img">
+											<?php $count = 0; 
+											foreach ($categoryWomen as $item){
+												$count += 1; 
+												if($count % 8 == 0){ ?>
+													</ul>
+													</div>
+													<div class="col-sm-3 multi-gd-img">
 										<ul class="multi-column-dropdown">
-											<li><a href="womens.html">Lingerie</a></li>
-											<li><a href="womens.html">Nightwear</a></li>
-											<li><a href="womens.html">Swim & Beachwear</a></li>
+												<?php }?>
+												
+												<li><a href="womens.html"><?= $item->name; ?></a></li>
+		            						
+		        							<?php }?>
 											
 										</ul>
 									</div>
@@ -226,20 +220,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<div class="row">
 									<div class="col-sm-3 multi-gd-img">
 										<ul class="multi-column-dropdown">
-											<li><a href="womens.html">Dresses</a></li>
-											<li><a href="womens.html">Tops</a></li>
-											<li><a href="womens.html">T-shirts & Vests</a></li>
-											<li><a href="womens.html">Jeans</a></li>
-											<li><a href="womens.html">Trousers & Leggings</a></li>
-											<li><a href="womens.html">Skirts</a></li>
-											<li><a href="womens.html">Shorts</a></li>
-										</ul>
-									</div>
-									<div class="col-sm-3 multi-gd-img">
+											<?php $count = 0; 
+											foreach ($categoryKids as $item){
+												$count += 1; 
+												if($count % 8 == 0){ ?>
+													</ul>
+													</div>
+													<div class="col-sm-3 multi-gd-img">
 										<ul class="multi-column-dropdown">
-											<li><a href="womens.html">Lingerie</a></li>
-											<li><a href="womens.html">Nightwear</a></li>
-											<li><a href="womens.html">Swim & Beachwear</a></li>
+												<?php }?>
+												
+												<li><a href="womens.html"><?= $item->name; ?></a></li>
+		            						
+		        							<?php }?>
 											
 										</ul>
 									</div>
@@ -251,7 +244,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</ul>
 					</li>
 					
-					<li class=" menu__item"><a class="menu__link" href="codes.html">Short Codes</a></li>
+					
 					<li class=" menu__item"><a class="menu__link" href="contact.html">contact</a></li>
 				  </ul>
 				</div>
