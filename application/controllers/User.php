@@ -33,7 +33,7 @@ Class User extends CI_Controller {
         $this->load->view('user/includes/footer',$this->data);
     }
 
-    // Search business
+    // Search categary
     public function search_keyword() {
         $this->load->model('AdminModel');
         $category = $this->input->get('categary');
