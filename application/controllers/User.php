@@ -7,7 +7,21 @@ Class User extends CI_Controller {
 	function __construct(){
         parent::__construct();
         $this->load->model('UserModel');
+
+        //$this->load->model('BusinessModel', 'Model');
+        //$this->data['categorylist'] = $this->Model->getCategoryList();
         
+    }
+
+    public function index() {
+        // $this->showPage('home');
+        //$this->load->model('BusinessModel');
+        //$this->data['business_data'] = $this->BusinessModel->select();
+        $this->load->view('user/includes/header');
+        $this->load->view('user/includes/carousel');
+        
+        $this->load->view('user/home');
+        $this->load->view('user/includes/footer');
     }
 
 	public function loginchk(){
@@ -27,7 +41,7 @@ Class User extends CI_Controller {
                 $this -> session -> set_userdata($the_session);
 
 
-                redirect("Welcome");
+                redirect("User");
 
 
            
