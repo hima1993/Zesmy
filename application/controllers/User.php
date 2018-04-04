@@ -7,22 +7,68 @@ Class User extends CI_Controller {
 	function __construct(){
         parent::__construct();
         $this->load->model('UserModel');
-
-        //$this->load->model('BusinessModel', 'Model');
-        //$this->data['categorylist'] = $this->Model->getCategoryList();
+        $this->load->model('AdminModel', 'Model');
+        $this->data['categorylist'] = $this->Model->getCategoryList();
+        $this->data['categoryWomen'] = $this->Model->getCategoryWomen();
+        $this->data['categoryMen'] = $this->Model->getCategoryMen();
+        $this->data['categoryKids'] = $this->Model->getCategoryKids();
         
     }
 
     public function index() {
-        // $this->showPage('home');
-        //$this->load->model('BusinessModel');
-        //$this->data['business_data'] = $this->BusinessModel->select();
-        $this->load->view('user/includes/header');
-        $this->load->view('user/includes/carousel');
+       
+        $this->load->view('user/includes/header',$this->data);
+        $this->load->view('user/includes/carousel',$this->data);
         
-        $this->load->view('user/home');
-        $this->load->view('user/includes/footer');
+        $this->load->view('user/home',$this->data);
+        $this->load->view('user/includes/footer',$this->data);
     }
+
+    public function browse() {
+       
+        $this->load->view('user/includes/header',$this->data);
+       
+        
+        $this->load->view('user/browse',$this->data);
+        $this->load->view('user/includes/footer',$this->data);
+    }
+
+    // Search business
+    public function search_keyword() {
+        $this->load->model('AdminModel');
+        $category = $this->input->get('categary');
+        $categoryid = 0;
+        if($category =='Men'){
+            $categoryid = 1;
+        }
+        else if($category =='Women'){
+            $categoryid = 2;
+        }
+        else if($category =='kids_boy'){
+            $categoryid = 3;
+        }
+        else if($category =='kids_girl'){
+            $categoryid = 4;
+        }
+
+        $keyword = $this->input->get('search');
+        $this->data['categoryid_id']  = $categoryid;
+        $this->data['item_data'] = $this->AdminModel->search($keyword,$categoryid);
+        $this->load->view('user/includes/header', $this->data);
+       $this->load->view('user/browse',$this->data);
+       $this->load->view('user/includes/footer',$this->data);
+    }
+
+    public function categary_view($categoryId) {
+        $this->load->model('AdminModel');
+        //$this->data['business_data'] = $this->BusinessModel->selectcategory($categoryId);
+        $this->load->view('client/layouts/header', $this->data);
+        $this->load->view('client/layouts/sidebar', $this->data);
+        $this->load->view('client/browse', $this->data);
+        $this->load->view('client/layouts/footer', $this->data);
+    }
+
+
 
 	public function loginchk(){
 
