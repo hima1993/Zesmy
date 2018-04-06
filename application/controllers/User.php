@@ -18,8 +18,7 @@ Class User extends CI_Controller {
         //$this->load->model('BusinessModel');
         //$this->data['business_data'] = $this->BusinessModel->select();
         $this->load->view('user/includes/header');
-        $this->load->view('user/includes/carousel');
-        
+        $this->load->view('user/includes/carousel');        
         $this->load->view('user/home');
         $this->load->view('user/includes/footer');
     }
