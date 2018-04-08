@@ -21,4 +21,17 @@ class admin extends CI_Controller {
 	public function index() {
 		$this->load->view('admin/admin1.php');
 	}
+	
+
+	public function logoutAdmn(){
+		unset(
+			$_SESSION['admn_id'],
+			$_SESSION['username'],
+			
+			$_SESSION['email'],
+			$_SESSION['admn_loggedIn']
+		);
+		redirect('User');
+
+	}
 }

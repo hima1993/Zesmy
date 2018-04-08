@@ -72,41 +72,78 @@ Class User extends CI_Controller {
 
 	public function loginchk(){
 
+        $this->load->model('AdminModel');
 
-        $res = $this->UserModel->verifylog($this->input->post('email'),md5($this->input->post('password')),'customer');
+        $res1 = $this->AdminModel->checkLog($this->input->post('email'), md5($this->input->post('password')));
 
-        if($res !== false){
+        $res2 = false;
+
+
+        
+
+        if($res1 !== false){
+            
+
+            
+            $admn_det = array(
+
+
+                'admn_id'=>$res1[0]->adminId,
+                'username' => $res1[0]->username,               
+                
+                'email'=>$res1[0]->email,
+                'admn_loggedIn' => TRUE
+
+            );
+
+                $this->session->set_userdata($admn_det);
+                redirect('Admin');   
+
+
+
+
+
+            
+           
+        }else{
+
+            $this->load->model('UserModel');
+
+            $res2 = $this->UserModel->verifylog($this->input->post('email'),md5($this->input->post('password')),'customer');
+
+
+            if ($res2 != false){
 
           
-                $firstname = $res[0]->firstName;
-                $lastname = $res[0]->lastName;
+                $firstname = $res2[0]->firstName;
+                $lastname = $res2[0]->lastName;
 
-                $id = $res[0]->customerId;
+                $id = $res2[0]->customerId;
 
                 $the_session = array("loggerFname"=>$firstname,"loggerid"=>$id,"loggerLname"=>$lastname);
                 $this -> session -> set_userdata($the_session);
 
 
-                redirect("User");
+                redirect("User");          
 
 
-           
+            }
+
+            // else{
+            //     echo "
+            //         <div>
+            //         <center>
+            //             <h1 style='color: #9f191f'>Wrong Username or Password</h1>
+            //             <h3 style='color: #398439'>Try again!</h3>
+            //          </center>
+            //          </div>
+            //          ";
+            //     $this->load->view('login_view');
+            // }
 
 
         }
-
-        // else{
-        //     echo "
-        //         <div>
-        //         <center>
-        //             <h1 style='color: #9f191f'>Wrong Username or Password</h1>
-        //             <h3 style='color: #398439'>Try again!</h3>
-        //          </center>
-        //          </div>
-        //          ";
-        //     $this->load->view('login_view');
-        // }
-
+        
 
 
 

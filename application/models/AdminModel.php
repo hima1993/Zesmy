@@ -3,6 +3,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class AdminModel extends CI_Model {
 
+	public function checkLog($email,$password){
+
+
+        $this->db->where('email', $email);
+        $this->db->where('password', $password);
+        $q = $this->db->get('admin');
+
+        if($q->num_rows() == 1){
+
+            return $q->result();
+        }
+
+        else{
+
+            return false;
+
+        }
+	}
+
 	// Get category list
 	public function getCategoryList() {
 		try {

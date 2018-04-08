@@ -1,22 +1,20 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
--- https://www.phpmyadmin.net/
+-- version 4.1.14
+-- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 04, 2018 at 10:01 PM
--- Server version: 10.1.29-MariaDB
--- PHP Version: 7.1.12
+-- Generation Time: Apr 08, 2018 at 09:16 PM
+-- Server version: 5.6.17
+-- PHP Version: 5.5.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `zesmy`
@@ -28,14 +26,16 @@ SET time_zone = "+00:00";
 -- Table structure for table `address`
 --
 
-CREATE TABLE `address` (
-  `addressId` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `address` (
+  `addressId` int(11) NOT NULL AUTO_INCREMENT,
   `customerId` int(11) NOT NULL,
   `addressLine` varchar(250) DEFAULT NULL,
   `city` varchar(45) DEFAULT NULL,
   `province` varchar(45) DEFAULT NULL,
-  `postalCode` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `postalCode` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`addressId`),
+  KEY `fk_address_customer1_idx` (`customerId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -43,12 +43,21 @@ CREATE TABLE `address` (
 -- Table structure for table `admin`
 --
 
-CREATE TABLE `admin` (
+CREATE TABLE IF NOT EXISTS `admin` (
   `adminId` int(11) NOT NULL,
   `username` varchar(45) DEFAULT NULL,
+  `email` varchar(45) DEFAULT NULL,
   `password` varchar(45) DEFAULT NULL,
-  `pin` varchar(45) DEFAULT NULL
+  `pin` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`adminId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`adminId`, `username`, `email`, `password`, `pin`) VALUES
+(1, 'Hima3993', 'hima@gmail.com', '00c66aaf5f2c3f49946f15c1ad2ea0d3', '1234');
 
 -- --------------------------------------------------------
 
@@ -56,12 +65,14 @@ CREATE TABLE `admin` (
 -- Table structure for table `category`
 --
 
-CREATE TABLE `category` (
-  `categoryId` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `category` (
+  `categoryId` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
   `description` varchar(250) DEFAULT NULL,
-  `persontypeId` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `persontypeId` int(11) NOT NULL,
+  PRIMARY KEY (`categoryId`),
+  KEY `fk_category_persontype1_idx` (`persontypeId`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=29 ;
 
 --
 -- Dumping data for table `category`
@@ -101,16 +112,24 @@ INSERT INTO `category` (`categoryId`, `name`, `description`, `persontypeId`) VAL
 -- Table structure for table `customer`
 --
 
-CREATE TABLE `customer` (
-  `customerId` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `customer` (
+  `customerId` int(11) NOT NULL AUTO_INCREMENT,
   `firstName` varchar(45) DEFAULT NULL,
   `middleName` varchar(45) DEFAULT NULL,
   `lastName` varchar(45) DEFAULT NULL,
   `contactNumber` varchar(45) DEFAULT NULL,
   `email` varchar(45) DEFAULT NULL,
   `username` varchar(45) DEFAULT NULL,
-  `password` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `password` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`customerId`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `customer`
+--
+
+INSERT INTO `customer` (`customerId`, `firstName`, `middleName`, `lastName`, `contactNumber`, `email`, `username`, `password`) VALUES
+(1, 'Lahiru', '124', 'Abe', '0755896555', 'lahiru@gmail.com', 'lahiru123', 'e10adc3949ba59abbe56e057f20f883e');
 
 -- --------------------------------------------------------
 
@@ -118,14 +137,16 @@ CREATE TABLE `customer` (
 -- Table structure for table `invoice`
 --
 
-CREATE TABLE `invoice` (
-  `invoiceId` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `invoice` (
+  `invoiceId` int(11) NOT NULL AUTO_INCREMENT,
   `date` varchar(45) DEFAULT NULL,
   `time` varchar(45) DEFAULT NULL,
   `discount` varchar(45) DEFAULT NULL,
   `total` varchar(45) DEFAULT NULL,
-  `customerId` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `customerId` int(11) NOT NULL,
+  PRIMARY KEY (`invoiceId`),
+  KEY `fk_invoice_customer1_idx` (`customerId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -133,13 +154,15 @@ CREATE TABLE `invoice` (
 -- Table structure for table `invoiceitemid`
 --
 
-CREATE TABLE `invoiceitemid` (
-  `invoicceItemId` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `invoiceitemid` (
+  `invoicceItemId` int(11) NOT NULL AUTO_INCREMENT,
   `specialOffer` varchar(45) DEFAULT NULL,
   `quantity` varchar(45) DEFAULT NULL,
   `invoiceId` int(11) NOT NULL,
-  `itemId` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `itemId` int(11) DEFAULT NULL,
+  PRIMARY KEY (`invoicceItemId`),
+  KEY `fk_invoiceItemId_invoice1` (`invoiceId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -147,14 +170,16 @@ CREATE TABLE `invoiceitemid` (
 -- Table structure for table `item`
 --
 
-CREATE TABLE `item` (
-  `itemId` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `item` (
+  `itemId` int(11) NOT NULL AUTO_INCREMENT,
   `itemName` varchar(40) NOT NULL,
   `image1` varchar(45) DEFAULT NULL,
   `image2` varchar(45) DEFAULT NULL,
   `image3` varchar(45) DEFAULT NULL,
-  `categoryId` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `categoryId` int(11) NOT NULL,
+  PRIMARY KEY (`itemId`),
+  KEY `fk_item_category1_idx` (`categoryId`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `item`
@@ -172,14 +197,16 @@ INSERT INTO `item` (`itemId`, `itemName`, `image1`, `image2`, `image3`, `categor
 -- Table structure for table `itemsize`
 --
 
-CREATE TABLE `itemsize` (
-  `itemSizeId` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `itemsize` (
+  `itemSizeId` int(11) NOT NULL AUTO_INCREMENT,
   `price` varchar(45) DEFAULT NULL,
   `discount` varchar(45) DEFAULT NULL,
   `stock` varchar(45) DEFAULT NULL,
   `sizeId` int(11) NOT NULL,
-  `itemId` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `itemId` int(11) DEFAULT NULL,
+  PRIMARY KEY (`itemSizeId`),
+  KEY `fk_itemSize_size1_idx` (`sizeId`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `itemsize`
@@ -195,9 +222,8 @@ INSERT INTO `itemsize` (`itemSizeId`, `price`, `discount`, `stock`, `sizeId`, `i
 
 --
 -- Stand-in structure for view `item_view`
--- (See below for the actual view)
 --
-CREATE TABLE `item_view` (
+CREATE TABLE IF NOT EXISTS `item_view` (
 `itemId` int(11)
 ,`categoryId` int(11)
 ,`image1` varchar(45)
@@ -211,19 +237,20 @@ CREATE TABLE `item_view` (
 ,`description` varchar(250)
 ,`persontypeId` int(11)
 );
-
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `log`
 --
 
-CREATE TABLE `log` (
-  `logId` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `log` (
+  `logId` int(11) NOT NULL AUTO_INCREMENT,
   `date` varchar(45) DEFAULT NULL,
   `time` varchar(45) DEFAULT NULL,
-  `adminId` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `adminId` int(11) NOT NULL,
+  PRIMARY KEY (`logId`),
+  KEY `fk_log_admin1_idx` (`adminId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -231,9 +258,10 @@ CREATE TABLE `log` (
 -- Table structure for table `persontype`
 --
 
-CREATE TABLE `persontype` (
+CREATE TABLE IF NOT EXISTS `persontype` (
   `personId` int(11) NOT NULL,
-  `type` varchar(45) DEFAULT NULL
+  `type` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`personId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -252,10 +280,11 @@ INSERT INTO `persontype` (`personId`, `type`) VALUES
 -- Table structure for table `size`
 --
 
-CREATE TABLE `size` (
+CREATE TABLE IF NOT EXISTS `size` (
   `sizeId` int(11) NOT NULL,
   `name` varchar(45) DEFAULT NULL,
-  `description` varchar(250) DEFAULT NULL
+  `description` varchar(250) DEFAULT NULL,
+  PRIMARY KEY (`sizeId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -272,136 +301,7 @@ INSERT INTO `size` (`sizeId`, `name`, `description`) VALUES
 --
 DROP TABLE IF EXISTS `item_view`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `item_view`  AS  select `item`.`itemId` AS `itemId`,`item`.`categoryId` AS `categoryId`,`item`.`image1` AS `image1`,`item`.`image2` AS `image2`,`item`.`itemName` AS `itemName`,`item`.`image3` AS `image3`,`itemsize`.`itemSizeId` AS `itemSizeid`,`itemsize`.`price` AS `price`,`itemsize`.`discount` AS `discount`,`category`.`name` AS `name`,`category`.`description` AS `description`,`category`.`persontypeId` AS `persontypeId` from ((`item` join `itemsize`) join `category`) where ((`item`.`itemId` = `itemsize`.`itemId`) and (`item`.`categoryId` = `category`.`categoryId`)) ;
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `address`
---
-ALTER TABLE `address`
-  ADD PRIMARY KEY (`addressId`),
-  ADD KEY `fk_address_customer1_idx` (`customerId`);
-
---
--- Indexes for table `admin`
---
-ALTER TABLE `admin`
-  ADD PRIMARY KEY (`adminId`);
-
---
--- Indexes for table `category`
---
-ALTER TABLE `category`
-  ADD PRIMARY KEY (`categoryId`),
-  ADD KEY `fk_category_persontype1_idx` (`persontypeId`);
-
---
--- Indexes for table `customer`
---
-ALTER TABLE `customer`
-  ADD PRIMARY KEY (`customerId`);
-
---
--- Indexes for table `invoice`
---
-ALTER TABLE `invoice`
-  ADD PRIMARY KEY (`invoiceId`),
-  ADD KEY `fk_invoice_customer1_idx` (`customerId`);
-
---
--- Indexes for table `invoiceitemid`
---
-ALTER TABLE `invoiceitemid`
-  ADD PRIMARY KEY (`invoicceItemId`),
-  ADD KEY `fk_invoiceItemId_invoice1` (`invoiceId`);
-
---
--- Indexes for table `item`
---
-ALTER TABLE `item`
-  ADD PRIMARY KEY (`itemId`),
-  ADD KEY `fk_item_category1_idx` (`categoryId`);
-
---
--- Indexes for table `itemsize`
---
-ALTER TABLE `itemsize`
-  ADD PRIMARY KEY (`itemSizeId`),
-  ADD KEY `fk_itemSize_size1_idx` (`sizeId`);
-
---
--- Indexes for table `log`
---
-ALTER TABLE `log`
-  ADD PRIMARY KEY (`logId`),
-  ADD KEY `fk_log_admin1_idx` (`adminId`);
-
---
--- Indexes for table `persontype`
---
-ALTER TABLE `persontype`
-  ADD PRIMARY KEY (`personId`);
-
---
--- Indexes for table `size`
---
-ALTER TABLE `size`
-  ADD PRIMARY KEY (`sizeId`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `address`
---
-ALTER TABLE `address`
-  MODIFY `addressId` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `category`
---
-ALTER TABLE `category`
-  MODIFY `categoryId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
-
---
--- AUTO_INCREMENT for table `customer`
---
-ALTER TABLE `customer`
-  MODIFY `customerId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `invoice`
---
-ALTER TABLE `invoice`
-  MODIFY `invoiceId` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `invoiceitemid`
---
-ALTER TABLE `invoiceitemid`
-  MODIFY `invoicceItemId` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `item`
---
-ALTER TABLE `item`
-  MODIFY `itemId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `itemsize`
---
-ALTER TABLE `itemsize`
-  MODIFY `itemSizeId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `log`
---
-ALTER TABLE `log`
-  MODIFY `logId` int(11) NOT NULL AUTO_INCREMENT;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `item_view` AS select `item`.`itemId` AS `itemId`,`item`.`categoryId` AS `categoryId`,`item`.`image1` AS `image1`,`item`.`image2` AS `image2`,`item`.`itemName` AS `itemName`,`item`.`image3` AS `image3`,`itemsize`.`itemSizeId` AS `itemSizeid`,`itemsize`.`price` AS `price`,`itemsize`.`discount` AS `discount`,`category`.`name` AS `name`,`category`.`description` AS `description`,`category`.`persontypeId` AS `persontypeId` from ((`item` join `itemsize`) join `category`) where ((`item`.`itemId` = `itemsize`.`itemId`) and (`item`.`categoryId` = `category`.`categoryId`));
 
 --
 -- Constraints for dumped tables
@@ -448,7 +348,6 @@ ALTER TABLE `itemsize`
 --
 ALTER TABLE `log`
   ADD CONSTRAINT `fk_log_admin1` FOREIGN KEY (`adminId`) REFERENCES `admin` (`adminId`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
