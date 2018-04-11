@@ -34,4 +34,8 @@ class Admin extends CI_Controller {
 		redirect('User');
 
 	}
+
+	public function viewProfile(){
+		$this->load->view('admin/userprofile.php');
+	}
 }
