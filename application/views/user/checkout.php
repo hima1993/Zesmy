@@ -151,7 +151,12 @@
 				
 				<div class="checkout-right-basket animated wow slideInRight" data-wow-delay=".5s">
 					<a href="mens.html"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>Back To Shopping</a>
+                    <a href="<?php echo base_url()?>index.php/MakePayment"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>Make Payment</a>
 				</div>
+
+<!--                <div class="checkout-right-basket animated wow slideInRight" data-wow-delay=".5s">-->
+<!--                    <a href="mens.html"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>Back To Shopping</a>-->
+<!--                </div>-->
 				<div class="checkout-left-basket animated wow slideInLeft" data-wow-delay=".5s">
 					<h4>Shopping basket</h4>
 					<ul>
