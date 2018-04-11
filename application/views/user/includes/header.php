@@ -253,15 +253,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 		<div class="top_nav_right">
 			<div class="cart box_1">
-						<a href="<?php echo base_url()?>index.php/Other/GoCheckout">
-							<h3> <div class="total">
-								<i class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></i>
-								<span class="simpleCart_total"></span> (<span id="simpleCart_quantity" class="simpleCart_quantity"></span> items)</div>
-								
-							</h3>
-						</a>
-						<p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
-						
+				<a href="<?php echo base_url()?>index.php/Other/GoCheckout">
+					<h3> 
+						<div class="total">
+							<i class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></i>
+							<span class="simpleCart_total"></span> (<span id="simpleCart_quantity" class="simpleCart_quantity"></span> items)
+						</div>								
+					</h3>
+				</a>
+				<p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>						
 			</div>	
 		</div>
 		<div class="clearfix"></div>

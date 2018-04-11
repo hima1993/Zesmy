@@ -133,7 +133,8 @@
 				</ul>				  	 
 				<div class="resp-tabs-container">
 					<div class="tab-1 resp-tab-content" aria-labelledby="tab_item-0">
-						<div class="col-md-3 product-men">
+						
+						<div class="col-md-3 product-men" id="abc">
 							<div class="men-pro-item simpleCart_shelfItem">
 								<div class="men-thumb-item">
 									<img src="<?php echo base_url()?>template/images/a1.png" alt="" class="pro-image-front">
@@ -143,8 +144,7 @@
 												<a href="single.html" class="link-product-add-cart">Quick View</a>
 											</div>
 										</div>
-										<span class="product-new-top">New</span>
-										
+										<span class="product-new-top">New</span>																			
 								</div>
 								<div class="item-info-product ">
 									<h4><a href="single.html">Air Tshirt Black</a></h4>
@@ -152,10 +152,13 @@
 										<span class="item_price">$45.99</span>
 										<del>$69.71</del>
 									</div>
-									<a href="#" class="item_add single-item hvr-outline-out button2">Add to cart</a>									
+									<input type="hidden" name="varname" value="12345" />									
+									<a href="#" class="item_add single-item hvr-outline-out button2" onclick='sendToController("<?php echo "itemid" ?>")'>Add to cart</a>	
 								</div>
 							</div>
 						</div>
+					
+
 						<div class="col-md-3 product-men">
 							<div class="men-pro-item simpleCart_shelfItem">
 								<div class="men-thumb-item">
@@ -179,6 +182,7 @@
 								</div>
 							</div>
 						</div>
+
 						<div class="col-md-3 product-men">
 							<div class="men-pro-item simpleCart_shelfItem">
 								<div class="men-thumb-item">
@@ -202,6 +206,7 @@
 								</div>
 							</div>
 						</div>
+
 						<div class="col-md-3 product-men">
 							<div class="men-pro-item simpleCart_shelfItem">
 								<div class="men-thumb-item">
@@ -729,3 +734,16 @@
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript">
+	//below function is used to send data to the controller in CI
+	function sendToController(itemId){
+		$.ajax({
+			'url':'<?php echo base_url()?>index.php/User1/addToCart',
+			'type': 'POST',
+			'data': {'itemIdIndex':itemId},
+			'success': function(){window.alert("success");},
+   			'error': function(){window.alert("error");}
+		})		
+	}
+</script>

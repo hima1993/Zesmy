@@ -16,6 +16,7 @@ Class User extends CI_Controller {
     }
 
     public function index() {
+
        
         $this->load->view('user/includes/header',$this->data);
         $this->load->view('user/includes/carousel',$this->data);
@@ -57,6 +58,7 @@ Class User extends CI_Controller {
         $this->load->view('user/includes/header', $this->data);
        $this->load->view('user/browse',$this->data);
        $this->load->view('user/includes/footer',$this->data);
+
     }
 
     public function categary_view($categoryId) {
