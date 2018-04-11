@@ -2,12 +2,18 @@
 
 class User1 extends CI_Controller{
 
-	public function addToCart(){
-		//reciving the obtained data
-		$a1_atController=$_POST['a1'];
-		$a2_atController=$_POST['a2'];
+	function __construct(){
+        parent::__construct();
+        $this->load->model('UserModel');      
+    }
 
-		//sending back the data
-		//echo jason_encode(array('b1'=>$a1_atController,'b2'=>$a2_atController));
+	public function addToCart(){
+		$item_arr=array(
+			 'username' => 'abc2'
+		);
+
+		$responce=$this->UserModel->insertData($tablename='admin', $data_arr=$item_arr);
+
+		echo "<script>console.log('$responce')</script>";
 	}
 }

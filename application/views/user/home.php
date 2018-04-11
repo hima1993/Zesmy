@@ -153,7 +153,7 @@
 										<del>$69.71</del>
 									</div>
 									<input type="hidden" name="varname" value="12345" />									
-									<a href="#" class="item_add single-item hvr-outline-out button2" onclick='sendToController()'>Add to cart</a>	
+									<a href="#" class="item_add single-item hvr-outline-out button2" onclick='sendToController("<?php echo "itemid" ?>")'>Add to cart</a>	
 								</div>
 							</div>
 						</div>
@@ -737,15 +737,13 @@
 
 <script type="text/javascript">
 	//below function is used to send data to the controller in CI
-	function sendToController(){
-		var a1="a1_data";
-		var a2="a2_data";
+	function sendToController(itemId){
 		$.ajax({
 			'url':'<?php echo base_url()?>index.php/User1/addToCart',
 			'type': 'POST',
-			'data': {'a1':a1,'a2':a2},
+			'data': {'itemIdIndex':itemId},
 			'success': function(){window.alert("success");},
    			'error': function(){window.alert("error");}
-		})
+		})		
 	}
 </script>

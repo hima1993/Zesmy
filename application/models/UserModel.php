@@ -5,8 +5,6 @@ class UserModel extends CI_Model{
 
 
 public function verifylog($email,$password,$systemUser){
-
-
         $this->db->where('email', $email);
         $this->db->where('password', $password);
         $q = $this->db->get($systemUser);
