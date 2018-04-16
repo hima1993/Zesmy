@@ -8,7 +8,10 @@
 
 class MakePayment extends CI_Controller{
     public function index(){
-        echo "aaa";
+        $this->load->view('user/payment/header');
+        $this->load->view('user/payment/review');
+        //$this->load->view('user/checkout');
+        $this->load->view('user/includes/footer');
     }
 
 }
