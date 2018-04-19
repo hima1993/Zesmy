@@ -147,7 +147,7 @@
 									<img src="'.base_url().'template/images/'.$row->image1.'" alt="" class="pro-image-back">
 										<div class="men-cart-pro">
 											<div class="inner-men-cart-pro">
-												<a href="single.html" class="link-product-add-cart">Quick View</a>
+												<a href="'.site_url('Product').'" class="link-product-add-cart">Quick View</a>
 											</div>
 										</div>
 										<span class="product-new-top">New</span>																			
