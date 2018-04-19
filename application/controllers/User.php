@@ -21,8 +21,14 @@ Class User extends CI_Controller {
         $this->load->view('user/includes/header',$this->data);
         $this->load->view('user/includes/carousel',$this->data);
         
-        $this->load->view('user/home',$this->data);
+        $this->load->model("Shopping_cart_model");
+        $data["product"] = $this->Shopping_cart_model->fetch_all();
+         $this->load->view("user/home", $data);
+         
         $this->load->view('user/includes/footer',$this->data);
+
+
+        
     }
 
     public function browse() {
