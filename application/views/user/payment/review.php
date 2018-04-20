@@ -20,7 +20,7 @@
         </ol>
     </nav>
 
-    <div>
+    <div class="container">
         <?php echo form_open('MakePayment/shipDetails'); ?>
             <div class="form-group row">
                 <label for="inputEmail3" class="col-sm-2 col-form-label">Contact Name</label>
