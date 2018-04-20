@@ -21,7 +21,7 @@
     </nav>
 
     <div>
-        <form>
+        <?php echo form_open('MakePayment/shipDetails'); ?>
             <div class="form-group row">
                 <label for="inputEmail3" class="col-sm-2 col-form-label">Contact Name</label>
                 <div class="col-sm-6">
@@ -74,7 +74,7 @@
                     <button type="submit" class="btn btn-primary">Save and ship to this address</button>
                 </div>
             </div>
-        </form>
+        <?php echo form_close(); ?>
     </div>
 
 </section>
