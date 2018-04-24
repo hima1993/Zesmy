@@ -9,11 +9,9 @@ class User1 extends CI_Controller{
 
 	public function addToCart(){
 		$item_arr=array(
-			 'username' => 'abc2'
+			 'name' => 'abc'
 		);
 
-		$responce=$this->UserModel->insertData($tablename='admin', $data_arr=$item_arr);
-
-		echo "<script>console.log('$responce')</script>";
+		$responce=$this->UserModel->insertData($tablename='abc', $data_arr=$item_arr);
 	}
 }
