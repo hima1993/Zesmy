@@ -30,7 +30,7 @@
             </div>
             <div class="form-group row">
                 <label for="inputEmail3" class="col-sm-2 col-form-label">Country/Region</label>
-                <div class="col-sm-10">
+                <div class="col-sm-6">
                     <input type="email" class="form-control" id="inputPassword3" placeholder="Country/Region">
                 </div>
             </div>
