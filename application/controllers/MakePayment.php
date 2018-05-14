@@ -15,9 +15,12 @@ class MakePayment extends CI_Controller{
     }
 
     public function shipDetails(){
-        $this->load->view('user/payment/header');
-        $this->load->view('user/payment/payment');
-        $this->load->view('user/includes/footer');
+        $name=$this->input->post('name');
+        $this->load->model('PaymentModel');
+        $this->PaymentModel->shipData($name);
+//        $this->load->view('user/payment/header');
+//        $this->load->view('user/payment/payment');
+//        $this->load->view('user/includes/footer');
     }
 
 }
