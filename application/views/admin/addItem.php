@@ -347,11 +347,105 @@
             <!-- Small boxes (Stat box) -->
             <div class="row">
 
+                <div class="callout">
+                    <div class="box box-success">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Item Details</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+
+                            <?php echo validation_errors(); ?>
+                            <?php echo form_open('');?>
+                            <!--                        <form role="form">-->
+                            <!-- text input -->
+                            <div class="form-group">
+                                <label>Item Name</label>
+                                <input type="itemname" class="form-control" placeholder="Item name" name="itemname">
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Item Type</label>
+                                    <select class="form-control select2" style="width: 100%;" name="itemtype">
+                                        <option selected="selected">-----</option>
+                                        <option>Shirt</option>
+                                        <option>Trouser</option>
+                                        <option>Shorts</option>
+                                        <option>Jeans</option>
+                                        <option>T-Shirt</option>
+                                        <option>Other</option>
+                                    </select>
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Size</label>
+                                    <select class="form-control select2" style="width: 100%;" name="sizee">
+                                        <option selected="selected">-----</option>
+                                        <option>XS</option>
+                                        <option>S</option>
+                                        <option>M</option>
+                                        <option>L</option>
+                                        <option>XL</option>
+                                        <option>XXL</option>
+                                        <option>Other</option>
+                                    </select>
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>QTY</label>
+                                    <input type="number" class="form-control" placeholder="Item qty" name="qty">
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label>Item Description</label>
+                                <textarea class="form-control" rows="3" placeholder="Item Description" name="itemdescription"></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Price: </label>
+
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-money"></i>
+                                    </div>
+                                    <input type="number" class="form-control"  placeholder="Rs." name="price">
+                                    <input type="number" class="form-control"  placeholder="Discount." name="discount">
+                                </div>
+                                <!-- /.input group -->
+                            </div>
+
+
+
+
+
+                            <!-- input states -->
+
+                            <!-- checkbox -->
+
+                            <div style="align-content: right" class="col-md-12">
+                                <button type="submit" class="btn btn-success">Submit</button>
+                            </div>
+
+
+                            <!--                        </form>-->
+                            <?php echo form_close(); ?>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+
                 <!-- ./col -->
             </div>
             <!-- /.row -->
             <!-- Main row -->
-            
+
             <!-- /.row (main row) -->
 
         </section>
