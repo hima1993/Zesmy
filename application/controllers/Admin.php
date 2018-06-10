@@ -45,5 +45,10 @@ class Admin extends CI_Controller {
         $this->load->view('admin/adminDashboard.php');
         $this->load->view('admin/includes/adminFooter.php');
     }
+    public function addItem(){
+        $this->load->view('admin/includes/adminHeader.php');
+        $this->load->view('admin/addItem.php');
+        $this->load->view('admin/includes/adminFooter.php');
+    }
 
 }
