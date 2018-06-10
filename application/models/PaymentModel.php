@@ -7,8 +7,8 @@
  */
 
 class PaymentModel extends CI_Model{
-    public function shipData(){
-        echo "aaa";
+    public function shipData($name,$country,$street,$apartment){
+        echo($country);
     }
 
 }

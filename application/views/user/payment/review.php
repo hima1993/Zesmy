@@ -25,22 +25,22 @@
             <div class="form-group row">
                 <label for="inputEmail3" class="col-sm-2 col-form-label">Contact Name</label>
                 <div class="col-sm-6">
-                    <input type="email" class="form-control" id="name" name="name" placeholder="Name">
+                    <input class="form-control" id="name" name="name" placeholder="Name">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="inputEmail3" class="col-sm-2 col-form-label">Country/Region</label>
                 <div class="col-sm-6">
-                    <input type="email" class="form-control" id="inputPassword3" placeholder="Country/Region">
+                    <input class="form-control" id="country" name="country" placeholder="Country/Region">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="inputEmail3" class="col-sm-2 col-form-label">Street Address</label>
                 <div class="col-sm-6">
-                    <input type="email" class="form-control" id="inputEmail3" placeholder="Street">
+                    <input class="form-control" id="street" name="street" placeholder="Street">
                 </div>
                 <div class="col-sm-6">
-                    <input type="email" class="form-control" id="inputEmail3" placeholder="Apartment, suite, unit etc (Optional)">
+                    <input class="form-control" id="apartment" name="apartment" placeholder="Apartment, suite, unit etc (Optional)">
                 </div>
             </div>
             <div class="form-group row">
