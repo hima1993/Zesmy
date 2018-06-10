@@ -38,4 +38,12 @@ class Admin extends CI_Controller {
 	public function viewProfile(){
 		$this->load->view('admin/userprofile.php');
 	}
+
+//	ICB's work
+    public function adminView(){
+        $this->load->view('admin/includes/adminHeader.php');
+        $this->load->view('admin/adminDashboard.php');
+        $this->load->view('admin/includes/adminFooter.php');
+    }
+
 }
